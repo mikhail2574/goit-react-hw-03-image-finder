@@ -46,7 +46,7 @@ const SearchBar = () => {
           />
         </form>
       </header>
-      {items != [] ? <ImageGallery items={items.hits} /> : ''}
+      <ImageGallery items={items.hits} />
     </>
   );
 };

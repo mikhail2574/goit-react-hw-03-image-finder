@@ -1,7 +1,6 @@
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
-import { nanoid } from 'nanoid';
 
-const ImageGallery = ({ items }) => {
+const ImageGallery = ({ items, setSrc, setModal }) => {
   if (!Array.isArray(items) || items.length === 0) {
     return null;
   }
@@ -9,7 +8,16 @@ const ImageGallery = ({ items }) => {
   return (
     <ul className="ImageGallery">
       {items.map(item => {
-        return <ImageGalleryItem src={item.webformatURL} key="{item.id}" />;
+        return (
+          <ImageGalleryItem
+            src={item.webformatURL}
+            key={item.id}
+            tags={item.tags}
+            largesrc={item.webformatURL}
+            setSrc={setSrc}
+            setModal={setModal}
+          />
+        );
       })}
     </ul>
   );

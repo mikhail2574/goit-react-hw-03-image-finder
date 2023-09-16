@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
-import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
+import Modal from 'components/Modal/Modal';
 
 const API_KEY = '38966446-c32fc19d0a971996be7b08c24';
 const BASE_URL = `https://pixabay.com/api/`;
@@ -15,6 +15,8 @@ const params = new URLSearchParams({
 
 const SearchBar = () => {
   const [items, setItems] = useState([]);
+  const [modal, setModal] = useState('');
+  const [src, setSrc] = useState(false);
   const handleSubmit = async evt => {
     evt.preventDefault();
     params.set('q', evt.target.elements[1].value.trim());
@@ -46,7 +48,8 @@ const SearchBar = () => {
           />
         </form>
       </header>
-      <ImageGallery items={items.hits} />
+      <ImageGallery items={items.hits} setSrc={setSrc} setModal={setModal} />
+      <Modal src={src} modal={modal} setModal={setModal} />
     </>
   );
 };

@@ -1,12 +1,18 @@
+import React, { useEffect, useState } from 'react';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ items, setSrc, setModal }) => {
-  if (!Array.isArray(items) || items.length === 0) {
-    return null;
-  }
+const ImageGallery = ({ items, setSrc, setModal, setIsLoaderVisible }) => {
+  const [galleryVisible, setGalleryVisible] = useState(false);
+
+  useEffect(() => {
+    if (items && items.length > 0) {
+      document.querySelector('.ImageGallery').style.display = 'grid';
+      setIsLoaderVisible(false);
+    }
+  }, [items]);
 
   return (
-    <ul className="ImageGallery">
+    <ul className={`ImageGallery ${galleryVisible ? 'visible' : 'hidden'}`}>
       {items.map(item => {
         return (
           <ImageGalleryItem

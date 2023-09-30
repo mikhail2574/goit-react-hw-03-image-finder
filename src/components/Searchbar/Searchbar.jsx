@@ -24,6 +24,7 @@ const SearchBar = () => {
     key: KEY,
     q: q,
   });
+
   const handleSubmit = async evt => {
     setIsLoaderVisible(true);
     document.querySelector('.ImageGallery').style.display = 'none';
